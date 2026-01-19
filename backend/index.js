@@ -13,18 +13,15 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? [
-        process.env.FRONTEND_URL, 
-        'https://royalgambitt.vercel.app',
-        'https://royal-gambit-frontend.vercel.app',
-        /\.vercel\.app$/
-      ]
-    : ['http://localhost:5173', 'http://localhost:3000'],
+  origin: true, // Allow all origins temporarily for debugging
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
+
+console.log('CORS Options:', corsOptions);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
 
 app.use(cors(corsOptions));
 app.use(express.json());
