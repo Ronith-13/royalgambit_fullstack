@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
       if (!error.response) {
         return {
           success: false,
-          message: 'Cannot connect to backend server. Make sure it\'s running on http://localhost:5000'
+          message: 'Cannot connect to backend server. Please check your internet connection.'
         };
       }
       
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
       if (!error.response) {
         return {
           success: false,
-          message: 'Cannot connect to backend server. Make sure it\'s running on http://localhost:5000'
+          message: 'Cannot connect to backend server. Please check your internet connection.'
         };
       }
       
