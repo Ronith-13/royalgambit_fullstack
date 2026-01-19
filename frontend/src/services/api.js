@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace(/\/+$/, '');
 
 console.log('API_BASE_URL:', API_BASE_URL);
 console.log('Environment variables:', import.meta.env);
@@ -42,11 +42,15 @@ api.interceptors.response.use(
 
 // Auth API
 export const authAPI = {
-  register: (username, email, password) => 
-    api.post('/auth/register', { username, email, password }),
+  register: (username, email, password) => {
+    console.log('Making register request to:', `${API_BASE_URL}/auth/register`);
+    return api.post('/auth/register', { username, email, password });
+  },
   
-  login: (email, password) => 
-    api.post('/auth/login', { email, password })
+  login: (email, password) => {
+    console.log('Making login request to:', `${API_BASE_URL}/auth/login`);
+    return api.post('/auth/login', { email, password });
+  }
 };
 
 // User API
