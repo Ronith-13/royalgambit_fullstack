@@ -6,6 +6,12 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import newsRoutes from './routes/news.js';
 
+console.log('Route imports:', {
+  authRoutes: typeof authRoutes,
+  userRoutes: typeof userRoutes,
+  newsRoutes: typeof newsRoutes
+});
+
 dotenv.config();
 
 const app = express();
@@ -70,6 +76,11 @@ console.log('Routes registered successfully');
 // Test route
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Test route working', timestamp: new Date().toISOString() });
+});
+
+// Direct auth test route
+app.post('/api/auth/test-login', (req, res) => {
+  res.json({ message: 'Direct auth route working', body: req.body });
 });
 
 // Health check endpoint
