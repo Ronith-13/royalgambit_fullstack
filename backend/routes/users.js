@@ -8,6 +8,9 @@ const router = express.Router();
 router.get('/me', authenticateToken, async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'User doesn\'t exist' });
+    }
     res.json({
       user: {
         id: user._id,
@@ -24,6 +27,30 @@ router.get('/me', authenticateToken, async (req, res) => {
   }
 });
 
+// Check if user exists by email or username
+router.get('/exists/:identifier', async (req, res) => {
+  try {
+    const { identifier } = req.params;
+    
+    const user = await User.findOne({
+      $or: [{ email: identifier }, { username: identifier }]
+    });
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User doesn\'t exist' });
+    }
+    
+    res.json({ 
+      message: 'User exists',
+      exists: true,
+      username: user.username 
+    });
+  } catch (error) {
+    console.error('Check user existence error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Update user stats and points
 router.put('/me/stats', authenticateToken, async (req, res) => {
   try {
@@ -34,6 +61,9 @@ router.put('/me/stats', authenticateToken, async (req, res) => {
     }
 
     const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: 'User doesn\'t exist' });
+    }
     
     // Update stats
     if (result === 'win') {
