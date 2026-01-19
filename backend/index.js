@@ -61,9 +61,16 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // Routes
+console.log('Registering routes...');
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/news', newsRoutes);
+console.log('Routes registered successfully');
+
+// Test route
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Test route working', timestamp: new Date().toISOString() });
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
