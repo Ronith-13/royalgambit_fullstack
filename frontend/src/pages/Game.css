@@ -1,0 +1,112 @@
+.game-page {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.game-page-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: linear-gradient(145deg, #34495E 0%, #2C3E50 100%);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(139, 38, 53, 0.3);
+}
+
+.game-header h2 {
+  margin: 0;
+  color: #ECF0F1;
+  font-size: 1.8em;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #A73650 0%, #8B2635 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(139, 38, 53, 0.3);
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(139, 38, 53, 0.4);
+  background: linear-gradient(135deg, #8B2635 0%, #A73650 100%);
+}
+
+.points-notification {
+  background: linear-gradient(135deg, #A73650 0%, #8B2635 100%);
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: slideIn 0.3s ease-out;
+  box-shadow: 0 4px 8px rgba(139, 38, 53, 0.3);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-thinking {
+  background: linear-gradient(145deg, #34495E 0%, #2C3E50 100%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #BDC3C7;
+  animation: pulse 1.5s ease-in-out infinite;
+  border: 1px solid rgba(139, 38, 53, 0.2);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.game-container {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 968px) {
+  .game-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,369 @@
+.chess-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-labels {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.column-label {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: #A73650;
+  font-size: 0.9rem;
+}
+
+.chess-board {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #2C3E50;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.board-row {
+  display: flex;
+}
+
+.row-label {
+  width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #A73650;
+  font-size: 0.9rem;
+  margin-right: 5px;
+  align-self: center;
+}
+
+/* Enhanced animations for smoother gameplay */
+.square {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  will-change: transform, box-shadow;
+}
+
+.square.light {
+  background-color: #BDC3C7;
+}
+
+.square.dark {
+  background-color: #85929E;
+}
+
+.square:hover {
+  transform: scale(1.02);
+  box-shadow: inset 0 0 0 2px rgba(167, 54, 80, 0.5);
+}
+
+.square.selected {
+  background-color: #A73650 !important;
+  box-shadow: inset 0 0 0 3px #8B2635;
+  animation: selectedPulse 1.5s ease-in-out infinite;
+}
+
+.square.last-move {
+  background-color: rgba(167, 54, 80, 0.4) !important;
+  animation: lastMoveGlow 2s ease-out;
+}
+
+/* Improved keyframe animations */
+@keyframes selectedPulse {
+
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 3px #8B2635;
+  }
+
+  50% {
+    box-shadow: inset 0 0 0 3px #8B2635, 0 0 15px rgba(139, 38, 53, 0.5);
+  }
+}
+
+@keyframes lastMoveGlow {
+  0% {
+    background-color: rgba(167, 54, 80, 0.8) !important;
+  }
+
+  100% {
+    background-color: rgba(167, 54, 80, 0.4) !important;
+  }
+}
+
+.square.legal-move {
+  position: relative;
+}
+
+.square.legal-move::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(167, 54, 80, 0.6);
+  border-radius: 50%;
+  animation: legalMovePulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.legal-move-indicator {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(167, 54, 80, 0.6);
+  border-radius: 50%;
+  animation: legalMovePulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.capture-indicator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(139, 38, 53, 0.8);
+  border-radius: 50%;
+  animation: captureIndicatorPulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes legalMovePulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+@keyframes captureIndicatorPulse {
+
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced piece animations */
+.piece {
+  font-size: 2.5rem;
+  user-select: none;
+  z-index: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  will-change: transform, filter;
+}
+
+.piece:hover {
+  transform: scale(1.15) rotate(5deg);
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+  filter: brightness(1.1);
+}
+
+.square.selected .piece {
+  animation: selectedPieceBounce 0.6s ease-out;
+}
+
+@keyframes selectedPieceBounce {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Piece-specific hover effects with improved performance */
+.piece.king:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px #A73650);
+}
+
+.piece.queen:hover {
+  transform: scale(1.15) rotate(-3deg);
+  filter: drop-shadow(0 0 8px #8B2635);
+}
+
+.piece.rook:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 6px #5D6D7E);
+}
+
+.piece.bishop:hover {
+  transform: scale(1.12) rotate(8deg);
+  filter: drop-shadow(0 0 6px #34495E);
+}
+
+.piece.knight:hover {
+  transform: scale(1.15) rotate(-8deg);
+  animation: knightHop 0.5s ease-in-out;
+}
+
+.piece.pawn:hover {
+  transform: scale(1.1) translateY(-2px);
+}
+
+@keyframes knightHop {
+
+  0%,
+  100% {
+    transform: scale(1.15) rotate(-8deg) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.15) rotate(-8deg) translateY(-5px);
+  }
+}
+
+/* Color-specific effects */
+.piece.white {
+  color: #ECF0F1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.piece.black {
+  color: #2C3E50;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced move animation */
+@keyframes pieceMove {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3) rotate(10deg);
+    z-index: 10;
+    filter: brightness(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.piece.moving {
+  animation: pieceMove 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced capture animation */
+@keyframes pieceCapture {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0.5;
+    filter: brightness(1.5);
+  }
+
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.piece.captured {
+  animation: pieceCapture 0.6s ease-in-out forwards;
+}
+
+/* Board entrance animation */
+@keyframes boardEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(10deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+.chess-board {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: boardEntrance 0.8s ease-out;
+}
+
+/* Smooth transitions for all interactive elements */
+.square,
+.piece,
+.legal-move-indicator,
+.capture-indicator {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 768px) {
+  .square {
+    width: 40px;
+    height: 40px;
+  }
+
+  .piece {
+    font-size: 1.8rem;
+  }
+
+  .column-label,
+  .row-label {
+    font-size: 0.7rem;
+  }
+
+  .column-label {
+    width: 40px;
+  }
+
+  .row-label {
+    width: 20px;
+  }
+
+  .legal-move-indicator,
+  .square.legal-move::before {
+    width: 15px;
+    height: 15px;
+  }
+}
