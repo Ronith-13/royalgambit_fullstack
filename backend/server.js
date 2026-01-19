@@ -27,7 +27,7 @@ app.use('/api/', limiter);
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? [process.env.FRONTEND_URL, 'https://your-vercel-app.vercel.app']
-    : ['http://localhost:3000', 'http://localhost:5173'],
+    : ['https://royalgambit-fullstack.onrender.com', 'https://royalgambit-fullstack.onrender.com'],
   credentials: true,
   optionsSuccessStatus: 200
 };

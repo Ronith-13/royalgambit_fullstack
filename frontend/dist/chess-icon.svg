@@ -1,0 +1,50 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="64" height="64" fill="#000000"/>
+  
+  <!-- King piece (center) -->
+  <g transform="translate(32, 32)">
+    <!-- King cross -->
+    <rect x="-1.5" y="-16" width="3" height="6" fill="#A8B8FF" rx="1.5"/>
+    <rect x="-3" y="-14.5" width="6" height="3" fill="#A8B8FF" rx="1.5"/>
+    
+    <!-- King crown/head -->
+    <path d="M -5 -10 L 5 -10 L 4 -6 L -4 -6 Z" fill="#A8B8FF"/>
+    
+    <!-- King neck -->
+    <rect x="-1" y="-6" width="2" height="2" fill="#8FA8FF"/>
+    
+    <!-- King body segments -->
+    <rect x="-2.5" y="-4" width="5" height="2" fill="#7A9AFF" rx="1"/>
+    <path d="M -4 -2 L 4 -2 L 5 8 L -5 8 Z" fill="#A8B8FF"/>
+    
+    <!-- King base -->
+    <rect x="-6" y="8" width="12" height="3" fill="#7A9AFF" rx="1"/>
+  </g>
+  
+  <!-- Left Rook -->
+  <g transform="translate(15, 45)">
+    <!-- Rook head -->
+    <circle cx="0" cy="-12" r="5" fill="#F0F0FF"/>
+    
+    <!-- Rook body -->
+    <rect x="-4" y="-7" width="8" height="3" fill="#FFFFFF" rx="1"/>
+    <path d="M -4 -4 L 4 -4 L 5 8 L -5 8 Z" fill="#F0F0FF"/>
+    
+    <!-- Rook base -->
+    <rect x="-6" y="8" width="12" height="3" fill="#D0D0FF" rx="1"/>
+  </g>
+  
+  <!-- Right Rook -->
+  <g transform="translate(49, 45)">
+    <!-- Rook head -->
+    <circle cx="0" cy="-12" r="5" fill="#F0F0FF"/>
+    
+    <!-- Rook body -->
+    <rect x="-4" y="-7" width="8" height="3" fill="#FFFFFF" rx="1"/>
+    <path d="M -4 -4 L 4 -4 L 5 8 L -5 8 Z" fill="#F0F0FF"/>
+    
+    <!-- Rook base -->
+    <rect x="-6" y="8" width="12" height="3" fill="#D0D0FF" rx="1"/>
+  </g>
+</svg>
